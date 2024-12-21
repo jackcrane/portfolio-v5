@@ -32,6 +32,7 @@ import {
   ProjectDescription,
   SignatureFooterImage,
 } from "./kit";
+import TextTransition, { presets } from "react-text-transition";
 import signature from "../images/signature.png";
 import profile from "../images/ski.png";
 import { useMouse } from "@uidotdev/usehooks";
@@ -291,18 +292,17 @@ export default () => {
     "pilot",
   ];
 
-  const [mouse, ref] = useMouse();
-
   // Select a skill based on mouse position (x+y). Be sure to mod by the length of the array.
   const [skill, setSkill] = React.useState(options[0]);
   useEffect(() => {
-    setSkill(
-      options[Math.floor((mouse.x * 1.3 + mouse.y * 1.7) / 20) % options.length]
-    );
-  }, [mouse]);
+    // Pick random skill
+    setInterval(() => {
+      setSkill(options[Math.floor(Math.random() * options.length)]);
+    }, 1500);
+  }, []);
 
   return (
-    <div ref={ref}>
+    <div>
       <Nav>
         <SignatureImage src={signature} />
         <P className="hos-500">Jack Crane</P>
@@ -321,7 +321,17 @@ export default () => {
           </PaddedSplitSection>
           <PaddedSplitSection>
             <H2>
-              Im a{skill[0] === "a" ? "n " : ""} {skill} from Cincinnati
+              Im a{skill[0] === "a" ? "n " : ""}{" "}
+              <span
+                style={{
+                  display: "inline-block",
+                }}
+              >
+                <TextTransition springConfig={presets.gentle}>
+                  {skill}
+                </TextTransition>
+              </span>{" "}
+              from Cincinnati
             </H2>
             <Secondary>
               I love creating great digital and physical projects. I'm a

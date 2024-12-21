@@ -330,7 +330,7 @@ export default () => {
             </Secondary>
             <Spacer />
             <Row gap={"8px"}>
-              <ActionButton>Projects</ActionButton>
+              <ActionButton href="#projects">Projects</ActionButton>
               <MutedActionButton href="https://resume.jackcrane.rocks">
                 Resume
               </MutedActionButton>
@@ -381,7 +381,7 @@ export default () => {
         </Content>
       </CalloutSection>
       <Content>
-        <H3>Projects</H3>
+        <H3 id="projects">Projects</H3>
         <Spacer size={16} />
         <GridContainer>
           {projects.map((project, i) => (

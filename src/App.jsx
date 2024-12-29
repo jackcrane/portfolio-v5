@@ -304,7 +304,7 @@ export default () => {
   return (
     <div>
       <Nav>
-        <SignatureImage src={signature} />
+        <SignatureImage src={signature} alt={"JC Signature"} />
         <P className="hos-500">Jack Crane</P>
         <A href="https://resume.jackcrane.rocks">Resume</A>
         <A href="https://blog.jackcrane.rocks">Blog</A>
@@ -316,10 +316,23 @@ export default () => {
       <Content>
         <Split>
           <PaddedSplitSection>
-            <ProfileImage src={profile} />
+            <ProfileImage
+              src={profile}
+              alt={
+                "A picture of Jack on skis standing at the top of Breckenridge."
+              }
+            />
             <H1>Hello! I'm Jack</H1>
           </PaddedSplitSection>
-          <PaddedSplitSection>
+          <PaddedSplitSection
+            style={{
+              padding: 0,
+              minHeight: 210,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+            }}
+          >
             <H2>
               Im a{skill[0] === "a" ? "n " : ""}{" "}
               <span
@@ -358,7 +371,7 @@ export default () => {
                 {work.map((work, i) => (
                   <ListItem key={i}>
                     <Row gap={"8px"}>
-                      <ListImage src={work.icon} />
+                      <ListImage src={work.icon} alt={work.company} />
                       <div>
                         <ListHeading>{work.company}</ListHeading>
                         <Spacer size={4} />
@@ -373,14 +386,14 @@ export default () => {
               <H3>Awards & Recognition</H3>
               <Spacer size={8} />
               <List>
-                {awards.map((awards, i) => (
+                {awards.map((award, i) => (
                   <ListItem key={i}>
                     <Row gap={"8px"}>
-                      <ListImage src={awards.icon} />
+                      <ListImage src={award.icon} alt={award.title} />
                       <div>
-                        <ListHeading>{awards.title}</ListHeading>
+                        <ListHeading>{award.title}</ListHeading>
                         <Spacer size={4} />
-                        <ListText>{awards.description}</ListText>
+                        <ListText>{award.description}</ListText>
                       </div>
                     </Row>
                   </ListItem>
@@ -396,7 +409,7 @@ export default () => {
         <GridContainer>
           {projects.map((project, i) => (
             <GridCell key={i}>
-              <ProjectImage src={project.image} />
+              <ProjectImage src={project.image} alt={project.title} />
               <ProjectTitle>{project.title}</ProjectTitle>
               <Spacer size={8} />
               <ProjectDescription>{project.description}</ProjectDescription>
@@ -432,7 +445,7 @@ export default () => {
             </Row>
           ))}
         </Content>
-        <SignatureFooterImage src={signature} />
+        <SignatureFooterImage src={signature} alt={"JC Signature"} />
       </CalloutSection>
     </div>
   );

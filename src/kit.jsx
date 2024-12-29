@@ -113,7 +113,7 @@ export const PaddedSplitSection = styled(SplitSection)`
 `;
 
 export const Secondary = styled.p`
-  color: gray;
+  color: #727272;
 `;
 
 export const ProfileImage = styled.img`

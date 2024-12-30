@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   A,
   ActionButton,
@@ -31,11 +31,19 @@ import {
   ProjectTitle,
   ProjectDescription,
   SignatureFooterImage,
+  Container,
+  ContentContainer,
+  PopoutContainer,
+  Info,
+  Grow,
+  Collapse,
+  H4,
+  Hr,
+  Ul,
 } from "./kit";
 import TextTransition, { presets } from "react-text-transition";
 import signature from "../images/signature.png";
 import profile from "../images/ski.png";
-import { useMouse } from "@uidotdev/usehooks";
 import presidentsAward from "../images/pvsa.png";
 import ftc from "../images/ftc.png";
 import faa from "../images/faa.png";
@@ -58,29 +66,44 @@ const awards = [
     title: "Presidential Volunteer Service Award",
     description: "5x award recipient for contributions to STEM education",
     icon: presidentsAward,
+    detail:
+      "The Presidential Volunteer Service Award is a national recognition program in the United States that honors individuals and groups for their commitment to volunteerism and community service. It is awarded based on the number of volunteer hours completed within a 12-month period, with different levels (bronze, silver, and gold) acknowledging varying hours of service. Recipients receive a certificate, an official medallion, and a congratulatory letter from the President of the United States.",
+    agency: "The President of the United States",
   },
   {
     title: "FIRST Deans List finalist",
     description: "Awarded Ohio's top leadership award through FIRST Robotics",
     icon: ftc,
+    detail:
+      "The FTC Dean's List is a prestigious recognition within the FIRST Tech Challenge program, celebrating high school students who demonstrate exceptional leadership, dedication, and contributions to their teams and communities. Awardees are role models who inspire their peers through outstanding technical expertise, effective communication, and a passion for promoting STEM education. This honor highlights their ability to lead with integrity, foster collaboration, and advance the mission of FIRST both on and off the competition field.",
+    agency: "FIRST Tech Challenge",
   },
   {
     title: "Private Pilot's License",
     description:
       "Passed my PPL checkride on my 17th birthday, the earliest legally possible",
     icon: faa,
+    detail:
+      "A Private Pilot's License (PPL) is a certification that allows individuals to operate an aircraft for personal or recreational purposes but not for compensation or hire. It requires completing flight training, passing a written knowledge test, and demonstrating proficiency in flight maneuvers and navigation during a practical flight exam. The license enables pilots to carry passengers and fly under specific conditions, expanding their freedom to explore aviation while adhering to safety and regulatory standards.",
+    agency: "Federal Aviation Administration",
   },
   {
     title: "Volunteer of the Year",
     description:
       "Awarded for my work as volunteer coordinator for Ohio River Paddlefest",
     icon: oac,
+    detail:
+      "Adventure Crew is a nonprofit organization in Cincinnati dedicated to connecting city teens with nature and each other through engaging outdoor adventures. Founded in 2013, it serves nearly 1,000 students across 30 schools in Greater Cincinnati and Northern Kentucky, including all Cincinnati Public Schools high schools and select middle schools. ￼ The organization offers monthly adventures such as kayaking, hiking, biking, and skiing at no cost to participants, aiming to foster personal growth, environmental stewardship, and a lifelong appreciation for the outdoors. ￼",
+    agency: "Adventure Crew",
   },
   {
     title: "Excellence in Technology Award",
     description:
       "Awarded by my high school for my work launching and leading our robotics team",
     icon: scd,
+    detail:
+      "The Excellence in Technology Award is presented to a student at the Summit Country Day for outstanding achievement in the field of technology. The award is given to students who have demonstrated exceptional leadership, creativity, and innovation in their technology endeavors. This award recognizes the significant contributions made by students in their respective fields and encourages them to continue pursuing their passion for technology.",
+    agency: "The Summit Country Day School",
   },
 ];
 
@@ -89,26 +112,60 @@ const work = [
     company: "SLU Department of Mechanical Engineering",
     title: "Engineering Fundamentals TA",
     icon: slu,
+    description:
+      'I am working with the SLU Mechanical Engineering department to help teach the "ESCI 1701" Engineering Fundamentals Studio course, teaching students an introduction to engineering design through an introduction to Solidworks and technical drawing.',
+    bullets: [
+      'Taught students the basics of understanding Engineering design by directing them through a series of projects to help them understand "design intent".',
+      "Gave students their first taste in Solidworks and technical drawing, helping them begin thinking in 3d.",
+    ],
   },
   {
     company: "SLU Center for Additive Manufacturing",
     title: "Undergraduate Research Adjacent",
     icon: slu,
+    description:
+      "At the Saint Louis University Center for Additive Manufacturing, I am working to build out our understanding of Resin printing while learning about engineering for additive manufacturing, performing engineering analysis on models, and pre- and post- processing 3d prints to the highest quality for research labs in the university or other clients.",
+    bullets: [
+      "Spearheaded our initiative to better understand and optimize our Resin 3d printing processes",
+      "Created a custom 3d print dashboard to monitor and control our quality as we refined our processes",
+      "Built a custom timelapse PCB to record high-quality videos",
+    ],
   },
   {
     company: "Differential Development Shop",
     title: "Co-Op Software Engineer",
     icon: di,
+    description:
+      "I co-op'd at Differential on the Apollos team, developing mobile apps for megachurches. As part of the Frontend team, I played a key role in constructing our React Native template. Over the process of 31 merged PRs, I drove a feature that secured 3 clients, contributing to over $100k in revenue.",
+    bullets: [
+      "One of 3 frontend React Native developers, but branched into fullstack",
+      "31 merged Pull Requests over summer",
+      "Built out a feature that earned Apollos 3 new clients, resulting in $100k+ revenue",
+    ],
   },
   {
     company: "iSPACE STEM",
     title: "STEM Teacher & Curriculum Developer",
     icon: ispace,
+    description:
+      "Taught camps to students ages K-12 focused around STEM, including Robotics, Scratch & Python programming, Chemistry, and Physics. Over six years, I taught over 35 weeks of camp, teaching an estimated 700 students. I was awarded the Presidential Volunteer Service Award five times because of my volunteer work at iSPACE.",
+    bullets: [
+      "Taught over 35 weeks of camp, teaching an estimated 700 students",
+      "Awarded the Presidential Volunteer Service Award five times because of my volunteer work at iSPACE",
+      "Taught classes in chemistry, physics, robotics, web development, Python, and Scratch focused camps.",
+    ],
   },
   {
     company: "Perfect North Slopes",
     title: "Kids Ski Instructor",
     icon: pns,
+    description:
+      "Taught ski lessons for kids ages 5-12. This job refined my teaching skills over my experience of taking over 300 kids who have never been on the snow before to their first chairlift ride and farther. I learned invaluable leadership and education skills while teaching kids my passion.",
+    bullets: [
+      "Taught ski lessons for kids ages 5-12",
+      "Took over 300 kids who have never been on the snow before to their first chairlift ride and farther",
+      "Learned invaluable leadership and education skills while teaching kids my passion",
+    ],
   },
 ];
 
@@ -275,7 +332,7 @@ const socials = [
   },
 ];
 
-export default () => {
+const Skill = () => {
   const options = [
     "student",
     "student",
@@ -293,7 +350,7 @@ export default () => {
   ];
 
   // Select a skill based on mouse position (x+y). Be sure to mod by the length of the array.
-  const [skill, setSkill] = React.useState(options[0]);
+  const [skill, setSkill] = useState(options[0]);
   useEffect(() => {
     // Pick random skill
     setInterval(() => {
@@ -302,151 +359,245 @@ export default () => {
   }, []);
 
   return (
-    <div>
-      <Nav>
-        <SignatureImage src={signature} alt={"JC Signature"} />
-        <P className="hos-500">Jack Crane</P>
-        <A href="https://resume.jackcrane.rocks">Resume</A>
-        <A href="https://blog.jackcrane.rocks">Blog</A>
-        <FlexSpacer className="hos-350" />
-        <A className="hos-350" href="https://github.com/jackcrane">
-          Github
-        </A>
-      </Nav>
-      <Content>
-        <Split>
-          <PaddedSplitSection>
-            <ProfileImage
-              src={profile}
-              alt={
-                "A picture of Jack on skis standing at the top of Breckenridge."
-              }
-            />
-            <H1>Hello! I'm Jack</H1>
-          </PaddedSplitSection>
-          <PaddedSplitSection
-            style={{
-              padding: 0,
-              minHeight: 210,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-            }}
-          >
-            <H2>
-              Im a{skill[0] === "a" ? "n " : ""}{" "}
-              <span
-                style={{
-                  display: "inline-block",
-                }}
-              >
-                <TextTransition springConfig={presets.gentle}>
-                  {skill}
-                </TextTransition>
-              </span>{" "}
-              from Cincinnati
-            </H2>
-            <Secondary>
-              I love creating great digital and physical projects. I'm a
-              lifelong learner with a passion for picking up new skills and
-              technologies.
-            </Secondary>
-            <Spacer />
-            <Row gap={"8px"}>
-              <ActionButton href="#projects">Projects</ActionButton>
-              <MutedActionButton href="https://resume.jackcrane.rocks">
-                Resume
-              </MutedActionButton>
-            </Row>
-          </PaddedSplitSection>
-        </Split>
-      </Content>
-      <CalloutSection>
+    <H2>
+      Im a{skill[0] === "a" ? "n " : ""}{" "}
+      <span
+        style={{
+          display: "inline-block",
+        }}
+      >
+        <TextTransition
+          springConfig={presets.gentle}
+          style={{ position: "relative" }}
+        >
+          {skill}
+        </TextTransition>
+      </span>{" "}
+      from Cincinnati
+    </H2>
+  );
+};
+
+export default () => {
+  const [popout, setPopout] = useState(false);
+  const [popoutType, setPopoutType] = useState(null);
+
+  return (
+    <Container popout={popout}>
+      <ContentContainer popout={popout}>
+        {/* <button onClick={() => setPopout(!popout)}>Toggle</button> */}
+        <Nav>
+          <SignatureImage src={signature} alt={"JC Signature"} />
+          <P className="hos-500">Jack Crane</P>
+          <A href="https://resume.jackcrane.rocks">Resume</A>
+          <A href="https://blog.jackcrane.rocks">Blog</A>
+          <FlexSpacer className="hos-350" />
+          <A className="hos-350" href="https://github.com/jackcrane">
+            Github
+          </A>
+        </Nav>
         <Content>
-          <Split style={{ alignItems: "flex-start" }}>
-            <SplitSection>
-              <H3>Working Experience</H3>
-              <Spacer size={8} />
-              <List>
-                {work.map((work, i) => (
-                  <ListItem key={i}>
-                    <Row gap={"8px"}>
-                      <ListImage src={work.icon} alt={work.company} />
-                      <div>
-                        <ListHeading>{work.company}</ListHeading>
-                        <Spacer size={4} />
-                        <ListText>{work.title}</ListText>
-                      </div>
-                    </Row>
-                  </ListItem>
-                ))}
-              </List>
-            </SplitSection>
-            <SplitSection>
-              <H3>Awards & Recognition</H3>
-              <Spacer size={8} />
-              <List>
-                {awards.map((award, i) => (
-                  <ListItem key={i}>
-                    <Row gap={"8px"}>
-                      <ListImage src={award.icon} alt={award.title} />
-                      <div>
-                        <ListHeading>{award.title}</ListHeading>
-                        <Spacer size={4} />
-                        <ListText>{award.description}</ListText>
-                      </div>
-                    </Row>
-                  </ListItem>
-                ))}
-              </List>
-            </SplitSection>
+          <Split>
+            <PaddedSplitSection>
+              <ProfileImage
+                src={profile}
+                alt={
+                  "A picture of Jack on skis standing at the top of Breckenridge."
+                }
+              />
+              <H1>Hello! I'm Jack</H1>
+            </PaddedSplitSection>
+            <PaddedSplitSection
+              style={{
+                padding: 0,
+                minHeight: 210,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Skill />
+              <Secondary>
+                I love creating great digital and physical projects. I'm a
+                lifelong learner with a passion for picking up new skills and
+                technologies.
+              </Secondary>
+              <Spacer />
+              <Row gap={"8px"}>
+                <ActionButton href="#projects">Projects</ActionButton>
+                <MutedActionButton href="https://resume.jackcrane.rocks">
+                  Resume
+                </MutedActionButton>
+              </Row>
+            </PaddedSplitSection>
           </Split>
         </Content>
-      </CalloutSection>
-      <Content>
-        <H3 id="projects">Projects</H3>
-        <Spacer size={16} />
-        <GridContainer>
-          {projects.map((project, i) => (
-            <GridCell key={i}>
-              <ProjectImage src={project.image} alt={project.title} />
-              <ProjectTitle>{project.title}</ProjectTitle>
-              <Spacer size={8} />
-              <ProjectDescription>{project.description}</ProjectDescription>
-              {project.links && (
-                <>
-                  <Spacer size={8} />
-                  <Row gap={"8px"}>
-                    {project.links.map((link, i) => (
-                      <A key={i} href={link.url}>
-                        {link.title}
-                      </A>
-                    ))}
-                  </Row>
-                </>
-              )}
-            </GridCell>
-          ))}
-        </GridContainer>
-      </Content>
-      <Spacer size={32} />
-      <CalloutSection style={{ position: "relative", overflow: "hidden" }}>
+        <CalloutSection>
+          <Content>
+            <Split style={{ alignItems: "flex-start" }}>
+              <SplitSection>
+                <H3>Working Experience</H3>
+                <Spacer size={8} />
+                <List>
+                  {work.map((work, i) => (
+                    <ListItem key={i}>
+                      <Row gap={"8px"}>
+                        <ListImage src={work.icon} alt={work.company} />
+                        <div>
+                          <ListHeading>{work.company}</ListHeading>
+                          <Spacer size={4} />
+                          <ListText>{work.title}</ListText>
+                        </div>
+                        <Grow />
+                        <Info
+                          onClick={() => {
+                            setPopout(work);
+                            setPopoutType("WORK");
+                          }}
+                        />
+                      </Row>
+                    </ListItem>
+                  ))}
+                </List>
+              </SplitSection>
+              <SplitSection>
+                <H3>Awards & Recognition</H3>
+                <Spacer size={8} />
+                <List>
+                  {awards.map((award, i) => (
+                    <ListItem key={i}>
+                      <Row gap={"8px"}>
+                        <ListImage src={award.icon} alt={award.title} />
+                        <div>
+                          <ListHeading>{award.title}</ListHeading>
+                          <Spacer size={4} />
+                          <ListText>{award.description}</ListText>
+                        </div>
+                        <Grow />
+                        <Info
+                          onClick={() => {
+                            setPopout(award);
+                            setPopoutType("AWARD");
+                          }}
+                        />
+                      </Row>
+                    </ListItem>
+                  ))}
+                </List>
+              </SplitSection>
+            </Split>
+          </Content>
+        </CalloutSection>
         <Content>
-          <H3>Get in touch</H3>
-          <Spacer size={8} />
-          {socials.map((social, i) => (
-            <Row key={i} gap={"8px"}>
-              <A href={social.url}>
-                <Row gap={"8px"}>
-                  {social.icon}
-                  {social.handle}
-                </Row>
-              </A>
-            </Row>
-          ))}
+          <H3 id="projects">Projects</H3>
+          <Spacer size={16} />
+          <GridContainer>
+            {projects.map((project, i) => (
+              <GridCell key={i}>
+                <ProjectImage src={project.image} alt={project.title} />
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <Spacer size={8} />
+                <ProjectDescription>{project.description}</ProjectDescription>
+                {project.links && (
+                  <>
+                    <Spacer size={8} />
+                    <Row gap={"8px"}>
+                      {project.links.map((link, i) => (
+                        <A key={i} href={link.url}>
+                          {link.title}
+                        </A>
+                      ))}
+                    </Row>
+                  </>
+                )}
+              </GridCell>
+            ))}
+          </GridContainer>
         </Content>
-        <SignatureFooterImage src={signature} alt={"JC Signature"} />
-      </CalloutSection>
-    </div>
+        <Spacer size={32} />
+        <CalloutSection style={{ position: "relative", overflow: "hidden" }}>
+          <Content>
+            <H3>Get in touch</H3>
+            <Spacer size={8} />
+            {socials.map((social, i) => (
+              <Row key={i} gap={"8px"}>
+                <A href={social.url}>
+                  <Row gap={"8px"}>
+                    {social.icon}
+                    {social.handle}
+                  </Row>
+                </A>
+              </Row>
+            ))}
+          </Content>
+          <SignatureFooterImage src={signature} alt={"JC Signature"} />
+        </CalloutSection>
+      </ContentContainer>
+      <PopoutContainer popout={popout}>
+        <Row>
+          <Grow />
+          <Collapse onClick={() => setPopout(false)} />
+        </Row>
+        <Spacer size={16} />
+        {popout && <PopoutElement work={popout} type={popoutType} />}
+      </PopoutContainer>
+    </Container>
   );
+};
+
+const PopoutElement = ({ work, type }) => {
+  if (type === "WORK")
+    return (
+      <div>
+        <TextTransition springConfig={presets.default}>
+          <div
+            style={{
+              height: "calc(100vh - 32px - 24px - 16px)",
+              width: "calc(clamp(300px, 20%, 350px) - 16px)",
+              overflow: "auto",
+            }}
+          >
+            <H3>{work.company}</H3>
+            <Spacer size={12} />
+            <H4>{work.title}</H4>
+            <Hr />
+            <p>{work.description}</p>
+            <Hr />
+            <Ul>
+              {work.bullets.map((bullet, i) => (
+                <li key={i}>{bullet}</li>
+              ))}
+            </Ul>
+          </div>
+        </TextTransition>
+      </div>
+    );
+
+  if (type === "AWARD")
+    return (
+      <div>
+        <TextTransition springConfig={presets.default}>
+          <div
+            style={{
+              height: "calc(100vh - 32px - 24px - 16px)",
+              width: "calc(clamp(300px, 20%, 350px) - 16px)",
+              overflow: "auto",
+            }}
+          >
+            <H3>{work.title}</H3>
+            <Spacer size={12} />
+            <H4>{work.agency}</H4>
+            <Hr />
+            <p>{work.description}</p>
+            <Hr />
+            <p>{work.detail}</p>
+            {/* <Ul>
+              {work.bullets.map((bullet, i) => (
+                <li key={i}>{bullet}</li>
+              ))}
+            </Ul> */}
+          </div>
+        </TextTransition>
+      </div>
+    );
 };

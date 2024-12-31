@@ -1,21 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
+window.angle = Math.random() * 360;
+
 const colors = {
-  beige: "hsl(60deg 20% 95%)",
-  black: "hsl(60deg 20% 25%)",
+  beige: `hsl(${window.angle}deg 20% 95%)`,
+  black: `hsl(${window.angle}deg 20% 25%)`,
 
-  beigeHover: "hsl(60deg 20% 75%)",
-  blackHover: "hsl(60deg 20% 45%)",
+  beigeHover: `hsl(${window.angle}deg 20% 75%)`,
+  blackHover: `hsl(${window.angle}deg 20% 45%)`,
 
-  border: "hsl(60deg 20% 85%)",
+  border: `hsl(${window.angle}deg 20% 85%)`,
 
-  blackLight: "hsl(60deg 20% 55%)",
-  text: "hsl(60deg 20% 15%)",
-  secondary: "hsl(60deg 20% 60%)",
-  white: "hsl(60deg 10% 95%)",
+  blackLight: `hsl(${window.angle}deg 20% 55%)`,
+  text: `hsl(${window.angle}deg 20% 15%)`,
+  secondary: `hsl(${window.angle}deg 20% 60%)`,
+  white: `hsl(${window.angle}deg 10% 95%)`,
 
-  popout: "hsl(60deg 20% 85%)",
+  popout: `hsl(${window.angle}deg 20% 85%)`,
 };
 
 export const Container = styled.div`
@@ -157,7 +159,7 @@ export const ProfileImage = styled.img`
   height: 70px;
   width: 70px;
   border-radius: 50%;
-  border: 2px solid hsl(60deg 20% 95%);
+  border: 2px solid hsl(${window.angle}deg 20% 95%);
   margin: 0 auto;
   margin-bottom: 16px;
   transition: all 0.2s ease-in-out;

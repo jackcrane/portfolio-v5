@@ -436,7 +436,7 @@ export default () => {
           <Content>
             <Split style={{ alignItems: "flex-start" }}>
               <SplitSection>
-                <H3>Working Experience</H3>
+                <H3>Work Experience</H3>
                 <Spacer size={8} />
                 <List>
                   {work.map((work, i) => (

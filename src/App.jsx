@@ -391,6 +391,10 @@ export default () => {
           <P className="hos-500">Jack Crane</P>
           <A href="https://resume.jackcrane.rocks">Resume</A>
           <A href="https://blog.jackcrane.rocks">Blog</A>
+          <FlexSpacer className="m-hos-750" />
+          <A className="m-hos-750" href="mailto:jack@jackcrane.rocks">
+            jack@jackcrane.rocks
+          </A>
           <FlexSpacer className="hos-350" />
           <A className="hos-350" href="https://github.com/jackcrane">
             Github

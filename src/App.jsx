@@ -40,6 +40,7 @@ import {
   H4,
   Hr,
   Ul,
+  Tag,
 } from "./kit";
 import TextTransition, { presets } from "react-text-transition";
 import signature from "../images/signature.png";
@@ -57,9 +58,16 @@ import ogi from "../images/ogi.png";
 import sluop from "../images/sluop.png";
 import tik from "../images/tik.png";
 import mtsx from "../images/mtsx.png";
+import _2d23d2 from "../images/2d23d2.png";
+import eventPilot from "../images/eventpilot.png";
+import numberImage from "../images/fluid-sim-numbers.png";
 import paddlefestVolunteer from "../images/paddlefest-volunteer.png";
 import paddlefestAdmin from "../images/paddlefest-admin.png";
+import robot from "../images/robot.png";
 import mts from "../images/mts.png";
+import amp from "../images/amp.png";
+import rmp from "../images/rmp.png";
+import designForPrint from "../images/designing-for-print.png";
 
 const awards = [
   {
@@ -110,7 +118,7 @@ const awards = [
 const work = [
   {
     company: "SLU Department of Mechanical Engineering",
-    title: "Engineering Fundamentals TA",
+    title: "Engineering Fundamentals lead TA",
     icon: slu,
     description:
       'I am working with the SLU Mechanical Engineering department to help teach the "ESCI 1701" Engineering Fundamentals Studio course, teaching students an introduction to engineering design through an introduction to Solidworks and technical drawing.',
@@ -171,6 +179,28 @@ const work = [
 
 const projects = [
   {
+    title:
+      "Visualizing machine learning by classifying number images with a fluid simulation",
+    description:
+      "An exploration into visualizing machine learning with a fluid simulation. Published in the Saint Louis University FOR∀LL Math Magazine.",
+    image: numberImage,
+    links: [
+      {
+        title: "Paper PDF",
+        url: "https://github.com/jackcrane/fluid-number-classification/blob/main/Visualizing%20Machine%20Learning%20by%20Classifying%20Number%20Images%20with%20a%20Fluid%20Simulation.pdf",
+      },
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/fluid-number-classification",
+      },
+      {
+        title: "Full Publication",
+        url: "https://forallmathmagazine.com/wp-content/uploads/2025/03/forall-volume-3-issue-1.pdf",
+      },
+    ],
+    tags: ["Software", "Technical Writing", "Algorithms"],
+  },
+  {
     title: "OG Image Generator",
     description:
       "OG Image Generator is an 'opengraph image generator as a service', providing an API endpoint to make custom site preview images without the need for design skills.",
@@ -184,11 +214,8 @@ const projects = [
         title: "Live site",
         url: "https://og-image.xyz",
       },
-      {
-        title: "Blog post",
-        url: "https://blog.jackcrane.rocks/2021/08/20/og-image.html",
-      },
     ],
+    tags: ["Software", "Large-Scale"],
   },
   {
     title: "Github Profile Tik-Tak-Toe",
@@ -204,41 +231,133 @@ const projects = [
         title: "Play live",
         url: "https://github.com/jackcrane",
       },
-      {
-        title: "Blog post",
-        url: "https://blog.jackcrane.rocks/2021/10/19/gh-tik-tak-toe.html",
-      },
     ],
+    tags: ["Software", "Serverless"],
   },
   {
     title: "SLU Open Project",
     description:
       "SLU Open Project is a project for SLU Center for Additive Manufacturing as a home grown project management and project submission system.",
     image: sluop,
+    links: [
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/slu-open-project",
+      },
+    ],
+    tags: ["Software", "Project Management"],
   },
   {
     title: "MTS Xpress",
     description:
       "MTS Express is a mobile app for Myers Tire Supply that allows sales reps to quickly and easily order new products for their customers via a barcode scanner, cart management, and database integration.",
     image: mtsx,
+    tags: ["Software", "Native", "Commercial"],
   },
   {
     title: "Paddlefest Volunteer Registration",
     description:
       "A web platform for registering and managing volunteers for Ohio River Paddlefest.",
     image: paddlefestVolunteer,
+    tags: ["Software", "Large-Scale"],
   },
   {
     title: "Paddlefest Volunteer Admin",
     description:
       "An admin dashboard for Paddlefest administration to manage volunteers. (Names and PII redacted for privacy)",
     image: paddlefestAdmin,
+    tags: ["Software", "Large-Scale"],
   },
   {
     title: "MTS Rep Management System",
     description:
       "A web platform for Myers Tire Supply's reps to view and understand their sales, unlocking improved performance. (Names and numbers redacted for privacy)",
     image: mts,
+    tags: ["Software", "Commercial"],
+  },
+  {
+    title: "2d23d2",
+    description:
+      "A program inspired by Stratasys' 2d23d program that projects a 2d image into a 3d model for polyjet 3d printing on textiles. Takes in an image and outputs a colored 3d model.",
+    image: _2d23d2,
+    links: [
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/2d23d2",
+      },
+      {
+        title: "Live site",
+        url: "https://2d23d2.jackcrane.rocks",
+      },
+    ],
+    tags: ["Software", "3d Printing", "3d Software Dev"],
+  },
+  {
+    title: "EventPilot",
+    description:
+      "A complete event management platform built for medium to large size events like 5k's, marathons, conferences, etc. Built in order to arm event management teams with never-before-accessible tools to manage, grow, and understand their events.",
+    image: eventPilot,
+    tags: ["Software", "Large-Scale"],
+  },
+  {
+    title: "FIRST Tech Challenge Robotics",
+    description:
+      "Founded and captained high school a team to state championship, Participated in the world championship. Earned highest individual leadership award in Ohio, awards for teamwork, sportsmanship, documentation, software, and hardware design",
+    image: robot,
+    links: [
+      {
+        title: "Build Section",
+        url: "https://cdn.jackcrane.rocks/14365%20Build%20Section.pdf",
+      },
+      {
+        title: "Engineering Notebook",
+        url: "https://jack-general.nyc3.cdn.digitaloceanspaces.com/Engineering%20Notebook%20-%20General%20-%20ocr.pdf",
+      },
+    ],
+    tags: ["Hardware", "Technical Writing", "Leadership"],
+  },
+  {
+    title: "Apple Music Presence",
+    description:
+      "73 GitHub stars, 4 forks, and roughly 200 new users per month; Built on Node.js and S3; Over 400,000 listens registered",
+    image: amp,
+    links: [
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/apple-music-presence",
+      },
+    ],
+    tags: ["Software", "Large-Scale"],
+  },
+  {
+    title: "Rate My Professors X Courses@SLU",
+    description:
+      "A tiny extension that adds rate my professors ratings to the SLU course registration catalog",
+    image: rmp,
+    links: [
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/ratemyprofessors-x-slu",
+      },
+      {
+        title: "Web Store Link",
+        url: "https://chromewebstore.google.com/detail/rate-my-professors-x-cour/ogbakaenhgeecccinojnmkdegeonkodg?authuser=0&hl=en",
+      },
+    ],
+    tags: ["Software", "Chrome Extension"],
+  },
+  {
+    title: "Designing for Print",
+    description:
+      "A guide communicating my experiences in optimizing CAD designs for FDM 3d printing. Focus on technical writing and illustrations.",
+    image: designForPrint,
+    links: [
+      {
+        title: "Document PDF",
+        url: "https://cdn.jackcrane.rocks/designing-for-print.pdf",
+      },
+    ],
+    tags: ["Technical Writing", "3d Printing"],
   },
 ];
 
@@ -382,6 +501,34 @@ export default () => {
   const [popout, setPopout] = useState(false);
   const [popoutType, setPopoutType] = useState(null);
 
+  const flatTags = new Set(projects.flatMap((project) => project.tags));
+  const [selectedTags, setSelectedTags] = useState(() => new Set(flatTags));
+
+  const handleTagClick = (tag) => {
+    if (selectedTags.size === flatTags.size) {
+      // from initial all selected, pick only this one
+      setSelectedTags(new Set([tag]));
+    } else {
+      const newSet = new Set(selectedTags);
+      if (newSet.has(tag)) {
+        newSet.delete(tag);
+        // if no tags remain, reset to all
+        if (newSet.size === 0) {
+          setSelectedTags(new Set(flatTags));
+          return;
+        }
+      } else {
+        newSet.add(tag);
+      }
+      setSelectedTags(newSet);
+    }
+  };
+
+  // filter projects by any selected tag
+  const displayedProjects = projects.filter((project) =>
+    project.tags.some((tag) => selectedTags.has(tag))
+  );
+
   return (
     <Container popout={popout}>
       <ContentContainer popout={popout}>
@@ -390,7 +537,7 @@ export default () => {
           <SignatureImage src={signature} alt={"JC Signature"} />
           <P className="hos-500">Jack Crane</P>
           <A href="https://resume.jackcrane.rocks">Resume</A>
-          <A href="https://blog.jackcrane.rocks">Blog</A>
+          {/* <A href="https://blog.jackcrane.rocks">Blog</A> */}
           <FlexSpacer className="m-hos-750" />
           <A className="m-hos-750" href="mailto:jack@jackcrane.rocks">
             jack@jackcrane.rocks
@@ -494,18 +641,36 @@ export default () => {
         </CalloutSection>
         <Content>
           <H3 id="projects">Projects</H3>
+          <Row gap={"4px"} style={{ flexWrap: "wrap" }}>
+            <span style={{ fontSize: "0.75rem" }}>Pick tags:</span>
+            {Array.from(flatTags).map((tag, i) => (
+              <Tag
+                key={i}
+                selected={selectedTags.has(tag)}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+              </Tag>
+            ))}
+          </Row>
           <Spacer size={16} />
           <GridContainer>
-            {projects.map((project, i) => (
+            {displayedProjects.map((project, i) => (
               <GridCell key={i}>
                 <ProjectImage src={project.image} alt={project.title} />
                 <ProjectTitle>{project.title}</ProjectTitle>
+                <Spacer size={8} />
+                <Row gap={"4px"} style={{ flexWrap: "wrap" }}>
+                  {project.tags.map((tag, i) => (
+                    <Tag key={i}>{tag}</Tag>
+                  ))}
+                </Row>
                 <Spacer size={8} />
                 <ProjectDescription>{project.description}</ProjectDescription>
                 {project.links && (
                   <>
                     <Spacer size={8} />
-                    <Row gap={"8px"}>
+                    <Row gap={"8px"} style={{ flexWrap: "wrap" }}>
                       {project.links.map((link, i) => (
                         <A key={i} href={link.url}>
                           {link.title}
@@ -517,6 +682,35 @@ export default () => {
               </GridCell>
             ))}
           </GridContainer>
+          {selectedTags.size < flatTags.size &&
+            displayedProjects.length > 0 && (
+              <P style={{ textAlign: "center" }}>
+                Some projects are hidden because of the tags you have picked.{" "}
+                <A
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSelectedTags(new Set(flatTags));
+                  }}
+                >
+                  Show all projects
+                </A>
+              </P>
+            )}
+          {displayedProjects.length === 0 && (
+            <P style={{ textAlign: "center" }}>
+              No projects found with selected tags.{" "}
+              <A
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedTags(new Set(flatTags));
+                }}
+              >
+                Show all projects
+              </A>
+            </P>
+          )}
         </Content>
         <Spacer size={32} />
         <CalloutSection style={{ position: "relative", overflow: "hidden" }}>

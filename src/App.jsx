@@ -68,6 +68,8 @@ import mts from "../images/mts.png";
 import amp from "../images/amp.png";
 import rmp from "../images/rmp.png";
 import designForPrint from "../images/designing-for-print.png";
+import voxPrint from "../images/vox-print.png";
+import crossword from "../images/crossword.png";
 
 const awards = [
   {
@@ -179,28 +181,6 @@ const work = [
 
 const projects = [
   {
-    title:
-      "Visualizing machine learning by classifying number images with a fluid simulation",
-    description:
-      "An exploration into visualizing machine learning with a fluid simulation. Published in the Saint Louis University FOR∀LL Math Magazine.",
-    image: numberImage,
-    links: [
-      {
-        title: "Paper PDF",
-        url: "https://github.com/jackcrane/fluid-number-classification/blob/main/Visualizing%20Machine%20Learning%20by%20Classifying%20Number%20Images%20with%20a%20Fluid%20Simulation.pdf",
-      },
-      {
-        title: "Github",
-        url: "https://github.com/jackcrane/fluid-number-classification",
-      },
-      {
-        title: "Full Publication",
-        url: "https://forallmathmagazine.com/wp-content/uploads/2025/03/forall-volume-3-issue-1.pdf",
-      },
-    ],
-    tags: ["Software", "Technical Writing", "Algorithms"],
-  },
-  {
     title: "OG Image Generator",
     description:
       "OG Image Generator is an 'opengraph image generator as a service', providing an API endpoint to make custom site preview images without the need for design skills.",
@@ -235,9 +215,9 @@ const projects = [
     tags: ["Software", "Serverless"],
   },
   {
-    title: "SLU Open Project",
+    title: "CoreDesk",
     description:
-      "SLU Open Project is a project for SLU Center for Additive Manufacturing as a home grown project management and project submission system.",
+      "CoreDesk is a project for SLU Center for Additive Manufacturing as a home grown project management and project submission system.",
     image: sluop,
     links: [
       {
@@ -359,6 +339,14 @@ const projects = [
     ],
     tags: ["Technical Writing", "3d Printing"],
   },
+  {
+    title: "SSH Games",
+    description:
+      "An SSH server that runs a collection of games including sudoku, tik-tak-toe, and crossword puzzles. Try it now with 'ssh crossword@games.jackcrane.rocks'",
+    image: crossword,
+    links: [],
+    tags: ["Games"],
+  },
 ];
 
 const socials = [
@@ -451,6 +439,46 @@ const socials = [
   },
 ];
 
+const publications = [
+  {
+    journal: "For∀ll Math Magazine",
+    title:
+      "Visualizing machine learning by classifying number images with a fluid simulation",
+    links: [
+      {
+        title: "Paper PDF",
+        url: "https://github.com/jackcrane/fluid-number-classification/blob/main/Visualizing%20Machine%20Learning%20by%20Classifying%20Number%20Images%20with%20a%20Fluid%20Simulation.pdf",
+      },
+      {
+        title: "Github",
+        url: "https://github.com/jackcrane/fluid-number-classification",
+      },
+      {
+        title: "Full Publication",
+        url: "https://forallmathmagazine.com/wp-content/uploads/2025/03/forall-volume-3-issue-1.pdf",
+      },
+    ],
+    description:
+      "An exploration into visualizing machine learning with a fluid simulation. Published in the Saint Louis University FOR∀LL Math Magazine.",
+    tags: ["Software", "Technical Writing", "Algorithms"],
+    image: numberImage,
+  },
+  {
+    journal: "Saint Louis University Center for Additive Manufacturing",
+    title: "Translating images into Voxel Print-ready slices",
+    links: [
+      {
+        title: "Paper PDF",
+        url: "https://sites.google.com/slu.edu/slu-cam/voxel-print-wp",
+      },
+    ],
+    tags: ["Software", "3d Printing", "3d Software Dev"],
+    image: voxPrint,
+    description:
+      "This whitepaper covers the process of ingesting images and converting them to 'slice' files ready for the Stratasys PolyJet Voxel Print system.",
+  },
+];
+
 const Skill = () => {
   const options = [
     "student",
@@ -526,7 +554,7 @@ export default () => {
 
   // filter projects by any selected tag
   const displayedProjects = projects.filter((project) =>
-    project.tags.some((tag) => selectedTags.has(tag))
+    project.tags.some((tag) => selectedTags.has(tag)),
   );
 
   return (
@@ -713,6 +741,44 @@ export default () => {
           )}
         </Content>
         <Spacer size={32} />
+        <div>
+          <Content>
+            <H3 id="publications">Publications</H3>
+            <GridContainer>
+              {publications.map((publication, i) => (
+                <GridCell key={i}>
+                  <ProjectImage
+                    src={publication.image}
+                    alt={publication.title}
+                  />
+                  <ProjectTitle>{publication.title}</ProjectTitle>
+                  <Spacer size={8} />
+                  <Row gap={"4px"} style={{ flexWrap: "wrap" }}>
+                    {publication.tags.map((tag, i) => (
+                      <Tag key={i}>{tag}</Tag>
+                    ))}
+                  </Row>
+                  <Spacer size={8} />
+                  <ProjectDescription>
+                    {publication.description}
+                  </ProjectDescription>
+                  {publication.links && (
+                    <>
+                      <Spacer size={8} />
+                      <Row gap={"8px"} style={{ flexWrap: "wrap" }}>
+                        {publication.links.map((link, i) => (
+                          <A key={i} href={link.url}>
+                            {link.title}
+                          </A>
+                        ))}
+                      </Row>
+                    </>
+                  )}
+                </GridCell>
+              ))}
+            </GridContainer>
+          </Content>
+        </div>
         <CalloutSection style={{ position: "relative", overflow: "hidden" }}>
           <Content>
             <H3>Get in touch</H3>
